@@ -1,6 +1,15 @@
-//kotlinc Secuencia.kt -include-runtime -d Secuencia.jar
+// Pregunta 1, Parte b, Examen 3 CI3641.
+// Elaborado por Roberto Gamboa, 16-10394
 
-// interfaz donde se las funciones para las secuencias
+// Para compilar el archivo se puede usar el comando:
+// kotlinc Secuencia.kt -include-runtime -d Secuencia.jar
+// y posteriormente correrlo con java -jar Secuencia.jar
+
+// Implementacion de la clase secuencia, se trata de una secuencia de cualquier tipo de elementos
+
+// interfaz donde se definen las funciones para las secuencias
+// se instancia segun se trate de una cola o pilo y se sobreescriben las funciones remover y agregar
+// segun corresponda
 interface Secuencia {
 
     var elementos: MutableList<Any>
@@ -27,6 +36,9 @@ public class Cola : Secuencia {
     }
 
     override fun remover() : Any {
+        if (this.vacio()){
+            throw RuntimeException "No quedan elementos en la cola"
+        }
         var elem : Any = this.elementos[0]
         this.elementos.removeAt(0)
         return elem
@@ -34,7 +46,6 @@ public class Cola : Secuencia {
 
     override fun toString() : String {
 
-        // Tiempo de ejecucion : O(1) se retorma una variable solamente
 	    return elementos.toString()
     }
 }
@@ -48,14 +59,15 @@ public class Pila : Secuencia {
     }
 
     override fun remover() : Any {
+        if (this.vacio()){
+            throw RuntimeException "No quedan elementos en la pila"
+        }
         var elem : Any = this.elementos[0]
         this.elementos.removeAt(0)
         return elem
     }
 
     override fun toString() : String {
-
-        // Tiempo de ejecucion : O(1) se retorma una variable solamente
 	    return elementos.toString()
     }
 
