@@ -208,9 +208,7 @@ abstract class Busqueda(val g: Grafo) {
     val cola : Queue<Int> = LinkedList<Int>()
     val pila : Stack<Lado> = Stack()
 
-    open fun buscar(inicio:Int,fin:Int) : Int    {
-        return -1
-    }
+    abstract fun buscar(inicio:Int,fin:Int) : Int
 
     fun obtenerPredecesor(v: Int) : Int { 
         if(!g.contieneLado(v)){
